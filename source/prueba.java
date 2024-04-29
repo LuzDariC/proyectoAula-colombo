@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class prueba {
-    // Precio de platos
-
-    //hola
+    //Carlos hackeo a luz dary
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
