@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class prueba {
-    //Carlos hackeo a luz dary
+    // Carlos hackeo a luz dary
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
+        String inforUser[][] = new String[100][4];
         int opcion, opcion2, opcion3, opcion4, opcionServicio;
         String bup = null;
         String nombreUsuario, apellido;
@@ -12,7 +13,6 @@ public class prueba {
 
         int contador = 0;
         String usuario[] = new String[100];
-       
 
         do {
             System.out.println("--------------------------");
