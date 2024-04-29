@@ -6,13 +6,20 @@ public class prueba {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         String inforUser[][] = new String[100][4];
+        String userSesion [][] = new String[100][2];
+
+        int userCount = 0;
+        int userSesionCount = 0;
         int opcionHotel, opcion2, opcionHabitacion, opcionRestaurante, opcionServicio, opcionEvento;
         String bup = null;
-        String nombreUsuario, apellido,cedula;
+        String nombreuser, apellido,cedula;
         String hotel;
 
+        String cedulaCoordinador = ""; //Variable going to be empty
+        String emailCoordinador = ""; //Variable going to be empty to asociate with rector passwpord for coordinador
+
         int contador = 0;
-        String usuario[] = new String[100];
+        String user[] = new String[100000];
 
         do {
             System.out.println("--------------------------");
@@ -41,20 +48,26 @@ public class prueba {
                     System.out.println("--------------------------");
                     System.out.println();
 
-                    if (contador < usuario.length) {
+                    if (contador < user.length) {
 
-                        System.out.println("Intruzca su nombre:");
-                        nombreUsuario = entrada.nextLine();
 
-                        System.out.println("Intruzca su apellido: ");
-                        apellido = entrada.nextLine();
-
-                        System.out.println("Introduzca su cedula de identificación");
-                        cedula = entrada.nextLine();
-
-                        String nuevoUsuario = cedula + "," + nombreUsuario + "," + apellido ;
-                        usuario[contador] = nuevoUsuario;
-                        contador++;
+                                    System.out.print("Ingresa tu CC: ");
+                                    String CC = entrada.next();
+                                    System.out.print("Ingresa tu nombre: ");
+                                    String nombre = entrada.next();
+                                    System.out.print("Ingresa tu email: ");
+                                    String email = entrada.next();
+                                    
+                                    inforUser[userCount][0] = CC;
+                                    inforUser[userCount][1] = nombre;
+                                    inforUser[userCount][2] = email;
+                                   
+                        
+                                    System.out.println("Agregado correctamente!");
+                                    
+                                    userSesion[userSesionCount][0] = CC;
+                                    userSesion[userSesionCount][1] = email;
+                                    userSesionCount++;  
                     
                     } else {
                         System.out.println("No eres tu, somos nosotros");
