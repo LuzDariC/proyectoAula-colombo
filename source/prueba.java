@@ -10,16 +10,17 @@ public class prueba {
 
         int userCount = 0;
         int userSesionCount = 0;
-        int opcionHotel, opcion2, opcionHabitacion, opcionRestaurante, opcionServicio, opcionEvento;
+        int opcionHotel, opcionHabitacion, opcionRestaurante, opcionServicio, opcionEvento;
         String bup = null;
         String nombreuser, apellido,cedula;
         String hotel;
 
-        String cedulaCoordinador = ""; //Variable going to be empty
-        String emailCoordinador = ""; //Variable going to be empty to asociate with rector passwpord for coordinador
+        String usuarioInicio = ""; //Variable going to be empty
+        String ContraseñaInicio = ""; //Variable going to be empty to asociate with rector passwpord for coordinador
 
         int contador = 0;
         String user[] = new String[100000];
+        
 
         do {
             System.out.println("--------------------------");
@@ -71,7 +72,6 @@ public class prueba {
                     
                     } else {
                         System.out.println("No eres tu, somos nosotros");
-                    
 
                     }
                     do {
@@ -144,7 +144,7 @@ public class prueba {
 
                             case 2:
                                 System.out.println("RESTAURANTE");
-                                boolean mostrarMenuComidas = true; // Para controlar si se muestra el menú de comidas
+                                boolean mostrarMenuComidas = true; 
 
                                 do {
                                     if (mostrarMenuComidas) {
@@ -172,28 +172,28 @@ public class prueba {
                                             switch (Desayuno) {
                                                 case 1:
                                                     System.out.println("Precio es: 50000");
-                                                    double precio1 = entrada.nextDouble(); // El precio del plato 1
+                                                    double precio1 = entrada.nextDouble();
 
                                                     break;
                                                 case 2:
                                                     System.out.println("Precio es: 50000");
-                                                    double precio2 = entrada.nextDouble(); // El precio del plato 2
+                                                    double precio2 = entrada.nextDouble(); 
                                                     break;
 
                                                 case 3:
                                                     System.out.println("Precio es: 50000");
-                                                    double precio3 = entrada.nextDouble(); // El precio del plato 3
+                                                    double precio3 = entrada.nextDouble(); 
 
                                                     break;
 
                                                 case 4:
                                                     System.out.println("Precio es: 50000");
-                                                    double precio4 = entrada.nextDouble(); // El precio del plato 4
+                                                    double precio4 = entrada.nextDouble();
                                                     break;
 
                                                 case 5:
 
-                                                    break;
+                                                 break;
 
                                                 default:
                                                     System.out.println("La opción seleccionada no esta disponible!");
@@ -215,27 +215,22 @@ public class prueba {
                                             switch (almuerzo) {
                                                 case 1:
                                                     System.out.println("Precio es: 47000");
-                                                    double precio1Almuerzo = entrada.nextDouble(); // El precio del
-                                                                                                   // plato 1
+                                                    double precio1Almuerzo = entrada.nextDouble(); 
 
                                                     break;
                                                 case 2:
                                                     System.out.println("Precio es: 67000");
-                                                    double precio2Almuerzo = entrada.nextDouble(); // El precio del
-                                                                                                   // plato 2
+                                                    double precio2Almuerzo = entrada.nextDouble(); 
                                                     break;
 
                                                 case 3:
                                                     System.out.println("Precio es: 70000");
-                                                    double precio3Almuerzo = entrada.nextDouble(); // El precio del
-                                                                                                   // plato 3
-
+                                                    double precio3Almuerzo = entrada.nextDouble(); 
                                                     break;
 
                                                 case 4:
                                                     System.out.println("Precio es: 81000");
-                                                    double precio4Almuerzo = entrada.nextDouble(); // El precio del
-                                                                                                   // plato 4
+                                                    double precio4Almuerzo = entrada.nextDouble(); 
                                                     break;
 
                                                 case 5:
@@ -251,7 +246,7 @@ public class prueba {
 
                                         case 3:
                                             System.out.println("CENA");
-                                            System.out.println("1. Pasta carbonara.");
+                                            System.out.println("1. Pasta carbonada.");
                                             System.out.println("2. Salmón a la parrilla con salsa de limón y eneldo.");
                                             System.out.println("3. Pollo al horno con hierbas y limón. ");
                                             System.out.println("4. Sushi rolls de salmón y aguacate. ");
@@ -376,8 +371,11 @@ public class prueba {
                     break;
 
                 case 2:
-                    System.out.println("Hotel Seaside");
-                    System.out.println("");
+                System.out.println("--------------------------");
+                System.out.println("-     HOTEL SEASIDE      -");
+                System.out.println("--------------------------");
+                System.out.println();
+
                     break;
 
                 case 3:
