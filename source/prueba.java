@@ -252,23 +252,23 @@ public class prueba {
                                             switch (cena) {
                                                 case 1:
                                                     System.out.println("Precio es: 47000");
-                                                    double precio1cena = entrada.nextDouble(); // El precio del plato 1
+                                                    double precio1cena = entrada.nextDouble();
 
                                                     break;
                                                 case 2:
                                                     System.out.println("Precio es: 67000");
-                                                    double precio2cena = entrada.nextDouble(); // El precio del plato 2
+                                                    double precio2cena = entrada.nextDouble();
                                                     break;
 
                                                 case 3:
                                                     System.out.println("Precio es: 70000");
-                                                    double precio3cena = entrada.nextDouble(); // El precio del plato 3
+                                                    double precio3cena = entrada.nextDouble(); 
 
                                                     break;
 
                                                 case 4:
                                                     System.out.println("Precio es: 81000");
-                                                    double precio4cena = entrada.nextDouble(); // El precio del plato 4
+                                                    double precio4cena = entrada.nextDouble(); 
                                                     break;
 
                                                 case 5:
@@ -299,6 +299,7 @@ public class prueba {
                             
                             case 3:
                                 System.out.println("EVENTOS");
+                                System.out.println();
                                 do {
                                     System.out.println("Seleccione el tipo de salón de evento:");
                                     System.out.println("1. Salón VIP - Ejecutivos");
@@ -340,10 +341,13 @@ public class prueba {
 
                                                  switch (opcionConfirmacion) {
                                                     case 1:
+                                                    System.out.println();
                                                     System.out.println("¡El salón 202 ha sido reservado con exito!");
+                                                    System.out.println();
 
                                                         break;
                                                         case 2:
+                                                        System.out.println();
                                                         System.out.println("Reserva cancelada");
                                                         break;
             
