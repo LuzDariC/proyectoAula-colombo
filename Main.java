@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 class Empleado {
     private int cedula;
     private String nombre;
@@ -53,7 +54,7 @@ public class Main {
         // Menu
         Scanner entrada = new Scanner(System.in);
         Empleado[] empleados = new Empleado[1000];
-
+ 
         int cantidadEmpleados = 0;
         int opcion;
 
@@ -88,7 +89,7 @@ public class Main {
                     break;
             }
 
-        } while (opcion<1 || opcion>5);
+        } while (true);
 
     }
 
@@ -109,7 +110,6 @@ public class Main {
                         guardarEmpleados(empleados, cantidadEmpleados, entrada);
                         cantidadEmpleados++;
                     } else {
-
                     }
                     break;
                 case 2:
@@ -210,4 +210,7 @@ public class Main {
         }        
 
     }
+  
+    
 }
+
