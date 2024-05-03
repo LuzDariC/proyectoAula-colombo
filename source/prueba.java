@@ -1,478 +1,232 @@
 import java.util.Scanner;
 
 public class prueba {
-    // Carlos hackeo a luz dary
+    static Scanner leer = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-        String inforUser[][] = new String[100][4];
-        String userSesion[][] = new String[100][2];
-
-        int userCount = 0;
-        int userSesionCount = 0;
-        int opcionHotel, opcionHabitacion, opcionRestaurante, opcionServicio, opcionEvento, opcionSalonVIP,opcionConfirmacion;
-        String bup = null;
-        String nombreuser, apellido, cedula;
-        String hotel;
-
-        String usuarioInicio = ""; 
-        String ContraseñaInicio = ""; 
-        int contador = 0;
-        String user[] = new String[100000];
-
+        int op, opcionServicios, opcionHabitaciones, opcionRestaurante, opcionEventos;
         do {
-            System.out.println("--------------------------");
-            System.out.println("-        HOTELES         -");
-            System.out.println("--------------------------");
-            System.out.println("1. Hotel Svenish.");
-            System.out.println("2. Hotel Seaside.");
-            System.out.println("3. Hotel Astoria.");
-            System.out.println("4. Salir");
-            System.out.println();
-            System.out.println("Seleccione el hotel que desea.");
-
-            do {
-
-                bup = entrada.nextLine();
-
-            } while (!isInteger(bup));
-
-            opcionHotel = Integer.parseInt(bup);
-
-            switch (opcionHotel) {
-
+            limpiarPantalla();
+            menu_principal();
+            System.out.println("\nDigite la opcion: ");
+            op = leer.nextInt();
+            switch (op) {
                 case 1:
-                    System.out.println("--------------------------");
-                    System.out.println("-     HOTEL SVENISH      -");
-                    System.out.println("--------------------------");
-                    System.out.println();
-
-                    if (contador < user.length) {
-
-                        System.out.print("Ingresa tu CC: ");
-                        String CC = entrada.next();
-                        System.out.print("Ingresa tu nombre: ");
-                        String nombre = entrada.next();
-                        System.out.print("Ingresa tu email: ");
-                        String email = entrada.next();
-
-                        inforUser[userCount][0] = CC;
-                        inforUser[userCount][1] = nombre;
-                        inforUser[userCount][2] = email;
-
-                        System.out.println("Agregado correctamente!");
-
-                        userSesion[userSesionCount][0] = CC;
-                        userSesion[userSesionCount][1] = email;
-                        userSesionCount++;
-
-                    } else {
-                        System.out.println("No eres tu, somos nosotros");
-
-                    }
+                    System.out.println("Gestion de hoteles");
+                    pausa();
+                    break;
+                case 2:
+                    System.out.println("\nUsted ha seleccionado Gestion de servicios");
+                    pausa();
                     do {
-                        System.out.println();
-                        System.out.println("SERVICIOS");
-                        System.out.println();
+                        limpiarPantalla();
+                        menu_servicios();
+                        System.out.println("\nDigite la opcion: ");
+                        opcionServicios = leer.nextInt();
 
-                        System.out.println("1. Reserva de habitaciones.");
-                        System.out.println("2. Reserva de restaurantes");
-                        System.out.println("3. Reserva de eventos.");
-                        System.out.println("4. Salir");
-                        System.out.println();
-                        System.out.println("Ingrese una opción.");
-                        opcionServicio = entrada.nextInt();
-
-                        // aquiluz
-
-                        switch (opcionServicio) {
-
+                        switch (opcionServicios) {
                             case 1:
-                                System.out.println();
-                                System.out.println("HABITACIONES");
-                                System.out.println();
+                                System.out.println("\nUsted ha seleccionado la opcion habitaciones");
+                                pausa();
 
                                 do {
-                                    System.out.println("Seleccione el tipo de habitación:");
-                                    System.out.println("1. Habitacion Personal.");
-                                    System.out.println("2. Habitacion Matrimonial");
-                                    System.out.println("3. Habitacion para 3 personas");
-                                    System.out.println("4. Habitacion Familiar");
-                                    System.out.println("5. Regresar a menú anterior");
-                                    System.out.println();
-                                    System.out.println("Ingrese una opcion");
-                                    opcionHabitacion = entrada.nextInt();
+                                    limpiarPantalla();
+                                    menu_habitaciones();
+                                    System.out.println("\nDigite la opcion: ");
+                                    opcionHabitaciones = leer.nextInt();
 
-                                    switch (opcionHabitacion) {
+                                    switch (opcionHabitaciones) {
                                         case 1:
-                                            System.out.println("Habitacion personal ha sido reservada");
-                                            System.out.println("Habitacion 101");
-                                            System.out.println("El precio es de: COP 120000");
-                                            double HabitacionPersonal = 120000;
-                                            System.out.println();
+                                            System.out.println("\nUsted ha seleccionado la opcion habitacion personal");
+                                            pausa();
+                                            System.out.println("HABITACION PERSONAL");
+                                            System.out.println("CAPACIDAD: 1 persona");
+                                            System.out.println("");
                                             break;
                                         case 2:
-                                            System.out.println("Habitacion matrimonial ha sido reservada");
-                                            System.out.println("Habitacion 201");
-                                            System.out.println("El precio es de: COP 270000");
-                                            double HabitacionMatrimonial = 270000;
+                                            System.out.println( "\nUsted ha seleccionado la opcion habitacion matrimonial");
+                                            pausa();
+                                            System.out.println("HABITACION MATRIMONIAL");
+                                            System.out.println("CAPACIDAD: 2 persona");
+                                            System.out.println("");
                                             break;
                                         case 3:
-                                            System.out.println("Habitacion para 3 ha sido reservada");
-                                            System.out.println("Habitacion 301");
-                                            System.out.println("El precio es de: COP 340000");
-                                            double Habitacion3Personas = 340000;
-                                            break;
-                                        case 4:
-                                            System.out.println("Habitacion familiar ha sido reservada");
-                                            System.out.println("El precio es de: COP 570000");
-                                            double HabitacionFamiliar = 570000;
-                                            break;
-                                        case 5:
-
+                                            System.out.println("\nUsted ha seleccionado la opcion habitacion familiar");
+                                            pausa();
+                                            System.out.println("HABITACION FAMILIAR");
+                                            System.out.println("CAPACIDAD: 3 persona");
+                                            System.out.println("");
                                             break;
                                     }
 
-                                } while (opcionHabitacion != 5);
-                                break;
+                                    break;
+                                } while (opcionHabitaciones >= 1 && opcionHabitaciones < 4); {
 
-                            // HABITACIONES FIN
+                            }
+
+                            break;
 
                             case 2:
-                                System.out.println("RESTAURANTE");
-                                boolean mostrarMenuComidas = true;
-
+                                System.out.println("\nUsted ha seleccionado la opcion restaurante");
+                                pausa();
+                                
                                 do {
-                                    if (mostrarMenuComidas) {
-                                        System.out.println("Desea su comida para: ");
-                                        System.out.println("1. Desayuno");
-                                        System.out.println("2. Almuerzo");
-                                        System.out.println("3. Cena");
-                                        System.out.println("4. Salir");
-                                    }
-                                    opcionRestaurante = entrada.nextInt();
+                                    limpiarPantalla();
+                                    menu_restaurante();
+                                    System.out.println("\nDigite la opcion: ");
+                                    opcionRestaurante = leer.nextInt();
 
                                     switch (opcionRestaurante) {
                                         case 1:
-                                            System.out.println("DESAYUNO");
-                                            System.out.println( "1. Ensalada griega de tomate, pepino, aceitunas y queso feta.");
-                                            System.out.println("2. Huevos revueltos con tocino");
-                                            System.out.println("3. Tostadas con aceite de oliva y tomate");
-                                            System.out.println("4. Rollitos de primavera de vegetales");
-                                            System.out.println("5. Regresar al menu. ");
-                                            System.out.println("Seleccione la comida:");
-
-                                            int Desayuno = entrada.nextInt();
-
-                                            switch (Desayuno) {
-                                                case 1:
-                                                    System.out.println("Precio es: 50000");
-                                                    double precio1 = entrada.nextDouble();
-
-                                                    break;
-                                                case 2:
-                                                    System.out.println("Precio es: 50000");
-                                                    double precio2 = entrada.nextDouble();
-                                                    break;
-
-                                                case 3:
-                                                    System.out.println("Precio es: 50000");
-                                                    double precio3 = entrada.nextDouble();
-
-                                                    break;
-
-                                                case 4:
-                                                    System.out.println("Precio es: 50000");
-                                                    double precio4 = entrada.nextDouble();
-                                                    break;
-
-                                                case 5:
-
-                                                    break;
-
-                                                default:
-                                                    System.out.println("La opción seleccionada no esta disponible!");
-
-                                                    break;
-                                            }
-
+                                            System.out.println("\nUsted ha seleccionado la opcion comidas para el desayuno");
+                                            pausa();
                                             break;
                                         case 2:
-                                            System.out.println("ALMUERZO");
-                                            System.out.println("1. Risotto de champiñones");
-                                            System.out.println("2. Pollo al curry con arroz y guisantes");
-                                            System.out.println("3. Tacos de pollo con salsa de cilantro y cebolla.");
-                                            System.out.println("4. Arroz con pescado y ensalada de payaso");
-                                            int Almuerzo = entrada.nextInt();
-
-                                            int almuerzo = entrada.nextInt();
-
-                                            switch (almuerzo) {
-                                                case 1:
-                                                    System.out.println("Precio es: 47000");
-                                                    double precio1Almuerzo = entrada.nextDouble();
-
-                                                    break;
-                                                case 2:
-                                                    System.out.println("Precio es: 67000");
-                                                    double precio2Almuerzo = entrada.nextDouble();
-                                                    break;
-
-                                                case 3:
-                                                    System.out.println("Precio es: 70000");
-                                                    double precio3Almuerzo = entrada.nextDouble();
-                                                    break;
-
-                                                case 4:
-                                                    System.out.println("Precio es: 81000");
-                                                    double precio4Almuerzo = entrada.nextDouble();
-                                                    break;
-
-                                                case 5:
-
-                                                    break;
-                                                default:
-                                                    System.out.println("La opción seleccionada no esta disponible!");
-
-                                                    break;
-                                            }
-
+                                            System.out.println( "\nUsted ha seleccionado la opcion comidas para el almuerzo");
+                                            pausa();
                                             break;
-
                                         case 3:
-                                            System.out.println("CENA");
-                                            System.out.println("1. Pasta carbonada.");
-                                            System.out.println("2. Salmón a la parrilla con salsa de limón y eneldo.");
-                                            System.out.println("3. Pollo al horno con hierbas y limón. ");
-                                            System.out.println("4. Sushi rolls de salmón y aguacate. ");
-                                            int Cena = entrada.nextInt();
+                                            System.out.println("\nUsted ha seleccionado la opcion comidas para la cena");
+                                            pausa();
 
-                                            int cena = entrada.nextInt();
-
-                                            switch (cena) {
-                                                case 1:
-                                                    System.out.println("Precio es: 47000");
-                                                    double precio1cena = entrada.nextDouble(); // El precio del plato 1
-
-                                                    break;
-                                                case 2:
-                                                    System.out.println("Precio es: 67000");
-                                                    double precio2cena = entrada.nextDouble(); // El precio del plato 2
-                                                    break;
-
-                                                case 3:
-                                                    System.out.println("Precio es: 70000");
-                                                    double precio3cena = entrada.nextDouble(); // El precio del plato 3
-
-                                                    break;
-
-                                                case 4:
-                                                    System.out.println("Precio es: 81000");
-                                                    double precio4cena = entrada.nextDouble(); // El precio del plato 4
-                                                    break;
-
-                                                case 5:
-
-                                                    break;
-
-                                                default:
-                                                    System.out.println("La opción seleccionada no esta disponible!");
-
-                                                    break;
-                                            }
-
-                                            break;
-
-                                        case 4:
-                                            System.out.println("¡Ha salido con exito!");
-                                            System.out.println("Vuelva pronto.");
-                                            mostrarMenuComidas = false;
-                                            break;
-                                        default:
-                                            System.out.println("Ingrese una opcion valida");
                                             break;
                                     }
 
-                                } while (opcionRestaurante != 4);
+                                    break;
+                                } while (opcionRestaurante >= 1 && opcionRestaurante < 4); {
+
+                            }
+
                                 break;
 
-                            
                             case 3:
-                                System.out.println("EVENTOS");
+                                System.out.println("\nUsted ha seleccionado la opcion eventos");
+                                pausa();
+
                                 do {
-                                    System.out.println("Seleccione el tipo de salón de evento:");
-                                    System.out.println("1. Salón VIP - Ejecutivos");
-                                    System.out.println("2. Salón de Reuniones");
-                                    System.out.println("3. Salón de banquetes");
-                                    System.out.println("4. Salón de Conferencias o convenciones");
-                                    System.out.println("5. Salón de fistas o eventos sociales");
-                                    System.out.println("6. Salir. ");
-                                    System.out.println();
-                                    System.out.println("Ingrese una opcion");
-                                    opcionEvento = entrada.nextInt();
+                                    limpiarPantalla();
+                                    menu_eventos();
+                                    System.out.println("\nDigite la opcion: ");
+                                    opcionEventos = leer.nextInt();
 
-                                    switch (opcionEvento) {
+                                    switch (opcionEventos) {
                                         case 1:
-                                            System.out.println("Salones disponibles: ");
-                                            System.out.println();
-                                            System.out.println("1) SALÓN 202");
-                                            System.out.println("   Capacidad maxima: 70 personas ");
-                                            System.out.println("   Precio: COP 1.000.000");
-                                            System.out.println("   Tiempo maximo: 14 horas");
-                                            System.out.println();
-                                            System.out.println("2) SALÓN 204 ");
-                                            System.out.println("   capacidad maxima: 40 personas");
-                                            System.out.println("   Precio: COP 700.000");
-                                            System.out.println("   Tiempo maximo: 12 horas");
-                                            System.out.println();
-                                            System.out.println("Seleccione una opción");
-                                            opcionSalonVIP = entrada.nextInt();
-
-                                            switch (opcionSalonVIP) {
-                                                case 1:
-                                                System.out.println("¿Desea reservar el salon 202?");
-                                                System.out.println("La reserva no podrá revertirse.");
-                                                System.out.println();
-                                                System.out.println("1) Si");
-                                                System.out.println("2) No");
-                                                System.out.println("Digite la opción");
-                                                opcionConfirmacion= entrada.nextInt();
-
-                                                 switch (opcionConfirmacion) {
-                                                    case 1:
-                                                    System.out.println("¡El salón 202 ha sido reservado con exito!");
-
-                                                        break;
-                                                        case 2:
-                                                        System.out.println("Reserva cancelada");
-                                                        break;
-            
-                                                    default:
-                                                    System.out.println("Opcion invalida");
-                                                        break;
-                                                 }
-                                                    break;
-                                            
-                                                default:
-                            
-                                                    break;
-
-                                                case 2:
-                                                System.out.println("¿Desea reservar el salón 204?");
-                                                System.out.println("La reserva no podra revertirse.");
-                                                System.out.println();
-                                                System.out.println("1) Si");
-                                                System.out.println("2) No");
-                                                System.out.println("Digite una opción");
-                                                opcionConfirmacion=entrada.nextInt();
-                                                switch (opcionConfirmacion) {
-                                                    case 1:
-                                                    System.out.println("El salón 204 ha sido reservado con exito");
-                                                        
-                                                        break;
-                                                
-                                                    default:
-                                                        break;
-                                                }
-
-
-                                            }
-
-                                           
-
-
+                                            System.out.println("\nUsted ha seleccionado la opcion Boda");
+                                            pausa();
                                             break;
-
-
-
-
-
-
-
-
-
-
-
                                         case 2:
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
+                                            System.out.println( "\nUsted ha seleccionado la opcion Cumpleaños");
+                                            pausa();
                                             break;
-
                                         case 3:
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            break;
+                                            System.out.println("\nUsted ha seleccionado la opcion conferencias empresariales");
+                                            pausa();
 
-                                        case 4:
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            System.out.println();
-                                            break;
-
-                                        case 5:
-                                            System.out.println("Regresando al menu anterior...");
                                             break;
                                     }
 
-                                } while (opcionEvento != 6);
+                                    break;
+                                } while (opcionEventos >= 1 && opcionEventos < 4); {
+
+                            }
+
                                 break;
 
+                            default:
+                                break;
                         }
 
-                    } while (opcionServicio != 4);
+                    } while (opcionServicios >= 1 && opcionServicios < 4);
                     break;
-
-                case 2:
-                    System.out.println("--------------------------");
-                    System.out.println("-     HOTEL SEASIDE      -");
-                    System.out.println("--------------------------");
-                    System.out.println();
-
-                    break;
-
                 case 3:
-                    System.out.println("Hotel Astoria");
-                    System.out.println("");
+                    System.out.println("Gestion de empleados");
+                    pausa();
                     break;
-
                 case 4:
-                    System.out.println("Saliendo...");
-                    System.out.println("Has salido del programa");
-                    break;
-
-                default:
-                    System.out.println("Opción invalida");
+                    System.out.println("Gestion de clientes");
+                    pausa();
                     break;
             }
-        } while (opcionHotel != 4);
+
+        } while (op >= 1 && op < 5);
+        System.out.println("gracias por utilizar el software");
+
     }
 
-    public static boolean isInteger(String wd) {
-
+    public static void limpiarPantalla() {
         try {
-
-            Integer.parseInt(wd);
-
-            return true;
-
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+            Process startProcess = pb.inheritIO().start();
+            startProcess.waitFor();
         } catch (Exception e) {
-
-            System.out.println("Valor ingresado no nùmerico");
-
-            return false;
-
+            System.out.println(e);
         }
 
+    }
+
+    public static void pausa() {
+        leer.nextLine();
+        System.out.println("\t\nPresione enter para continuar...");
+        leer.nextLine();
+    }
+
+    public static void menu_principal() {
+        System.out.println("-----------------------");
+        System.out.println("          MENU         ");
+        System.out.println("-----------------------");
+        System.out.println("1. Gestion de hotel");
+        System.out.println("2. Gestion de servicios");
+        System.out.println("3. Gestion de empleados");
+        System.out.println("4. Gestion de clientes");
+        System.out.println("5. Salir.");
+
+    }
+
+    public static void menu_servicios() {
+        System.out.println("------------------");
+        System.out.println("    SERVICIOS     ");
+        System.out.println("------------------");
+        System.out.println("1. Habitaciones");
+        System.out.println("2. Restaurante");
+        System.out.println("3. Eventos");
+        System.out.println("4. Regresar al menu principal");
+        System.out.println();
+        System.out.println("Seleccione una opcion.");
+
+    }
+
+    public static void menu_habitaciones() {
+        System.out.println("------------------");
+        System.out.println("   HABITACIONES   ");
+        System.out.println("------------------");
+        System.out.println("1. Habitacion personal");
+        System.out.println("2. Habitacion matrimonial");
+        System.out.println("3. Habitacion familiar");
+        System.out.println("4. Regresar al menu de servicios");
+        System.out.println();
+        System.out.println("Seleccione una opcion.");
+    }
+    public static void menu_restaurante() {
+        System.out.println("------------------");
+        System.out.println("   RESTAURANTE    ");
+        System.out.println("------------------");
+        System.out.println("1. Comidas para el desayuno");
+        System.out.println("2. comidas para el almuerzo");
+        System.out.println("3. comidas para la cena");
+        System.out.println("4. Regresar al menu de servicios");
+        System.out.println();
+        System.out.println("Seleccione una opcion.");
+    }
+
+    public static void menu_eventos() {
+        System.out.println("------------------");
+        System.out.println("      EVENTOS     ");
+        System.out.println("------------------");
+        System.out.println("1. Bodas");
+        System.out.println("2. Cumpleaños");
+        System.out.println("3. Conferencias empresariales");
+        System.out.println("4. Regresar al menu de servicios");
+        System.out.println();
+        System.out.println("Seleccione una opcion.");
     }
 }
