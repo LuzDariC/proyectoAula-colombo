@@ -1,4 +1,59 @@
 import java.util.Scanner;
+class Cliente{
+    private int cedula;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private int telefono;
+    private String pais;
+    
+    public Cliente (int cedula, String nombre, String apellido, String email, int telefono, String pais){
+        this.cedula=cedula;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.email=email;
+        this.telefono=telefono;
+        this.pais=pais;
+    }
+    public int getcedula(){
+     return cedula;
+    }
+    public void setcedula(int cedula){
+        this.cedula=cedula;
+    }
+    public String getnombre() {
+        return nombre;
+    }
+    public void setnombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getapellido(){
+        return apellido;
+    }
+    public void setapellido( String apellido){
+        this.apellido=apellido;
+    }
+    public String getemail() {
+        return email;
+    }
+    public void setemail(String email) {
+        this.email = email;
+    }
+    public int gettelefono() {
+        return telefono;
+    }
+    public void settelefono(int telefono) {
+        this.telefono = telefono;
+    }   
+    public String getpais() {
+        return pais;
+    }
+    public void setpais(String pais) {
+        this.pais = pais;
+    }
+
+
+}
 
 
 class Empleado {
@@ -54,9 +109,12 @@ public class Main {
         // Menu
         Scanner entrada = new Scanner(System.in);
         Empleado[] empleados = new Empleado[1000];
- 
+        Cliente[]clientes= new Cliente[5000];
+        int cantidadClientes= 0; 
         int cantidadEmpleados = 0;
         int opcion;
+
+        
 
         do {
             System.out.println("Menú");
@@ -68,12 +126,16 @@ public class Main {
             System.out.println("Digite una opcion");
             opcion = entrada.nextInt();
             
+
+            
+            
             switch (opcion) {
                 case 1:
                     gestionarEmpleados(empleados, cantidadEmpleados, entrada);
                     break;
 
                 case 2:
+                     gestionarClientes(clientes, cantidadClientes, entrada);
                     break;
 
                 case 3:
@@ -90,6 +152,7 @@ public class Main {
             }
 
         } while (true);
+           
 
     }
 
@@ -98,9 +161,9 @@ public class Main {
             System.out.println("1. Añadir empleados");
             System.out.println("2. Listar empleados");
             System.out.println("3. Modificar empleados");
-            System.out.println("4. Actualizar empleados");
+            System.out.println("4. Eliminar empleados");
             System.out.println("5. Salir");
-            System.out.println("  Digite una opción");
+            System.out.println("  Digite una opción"); 
             int opcionGestion = entrada.nextInt();
             System.out.println("");
 
@@ -164,8 +227,8 @@ public class Main {
     }
 
     public static void modificarEmpleado(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
-        System.out.println("");
-        System.out.println("Digite la cedula: ");
+        System.out.println();
+        System.out.println("Digite la cedula a modificar : ");
         int Cedula = entrada.nextInt();
         for (int i = 0; i < cantidadEmpleados; i++) {
             // Verificar si existe
@@ -204,13 +267,153 @@ public class Main {
                 for(int j = i; j < cantidadEmpleados - 1; j++){
                     empleados[j] = empleados[j + 1];
                 }
+                cantidadEmpleados--;
                 System.out.println("Empleado eliminado!");
+                System.out.println();
                 return;
             }
         }        
 
     }
   
+    public static void gestionarClientes(Cliente[]clientes, int cantidadClientes, Scanner entrada){
+    do {
+        System.out.println("1. Añadir cliente");
+        System.out.println("2. Listar clientes");
+        System.out.println("3. Modificar clientes");
+        System.out.println("4. Eliminar clientes");
+        System.out.println("5. Salir");
+        System.out.println("  Digite una opción");
+        int opcionGestion = entrada.nextInt();
+        System.out.println("");
+
+        switch (opcionGestion) {
+            case 1:
+            guardarClientes(clientes, cantidadClientes, entrada);
+               
+                break;
+            case 2:
+            listarClientes(clientes, cantidadClientes);
+                break;
+            case 3:
+            modificarClientes(clientes, cantidadClientes, entrada);
+                break;
+            case 4:
+            eliminarClientes(clientes, cantidadClientes, entrada);
+                break;
+            case 5:
+                break;
+            default:
+
+                break;
+        }
+
+    } while (true);
+  }  
+
+    public static void guardarClientes(Cliente[]clientes, int cantidadClientes, Scanner entrada){
+    System.out.println();
+    System.out.print("Digite su cedula: ");
+    int cedula= entrada.nextInt();
+
+    System.out.print("Digite su nombre: ");
+    String nombre = entrada.next();
+
+    System.out.print("Digite su apellido: ");
+    String apellido= entrada.next();
+
+    System.out.print("Digite su email: ");
+    String email= entrada.next();
+
+    System.out.print("Digite su numero celular: ");
+    int celular= entrada.nextInt();
+
+    System.out.print("Digite su pais de residencia");
+    String pais = entrada.next();
+
+    clientes [cantidadClientes] = new Cliente(cedula, nombre, apellido, email, celular, pais);
+    System.out.println("¡Cliente añadido con exito!");
+    System.out.println();
+
+
+
+  }
+
+    public static void listarClientes (Cliente[]clientes, int cantidadClientes){
+System.out.println();
+System.out.println("================ Lista de clientes ================");
+
+for (int i=0; i < cantidadClientes; i++){
+    System.out.println("Nombre :" +clientes[i].getnombre());
+    System.out.println("Apellido :" +clientes[i].getapellido());
+    System.out.println("Cedula :" +clientes[i].getcedula());
+    System.out.println("Email :" +clientes[i].getemail());
+    System.out.println("Telefono :" +clientes[i].gettelefono());
+    System.out.println("Pais de residencia :" +clientes[i].getpais());
+    System.out.println();
+}
+
+}
+
+    public static void modificarClientes (Cliente[] clientes, int cantidadClientes, Scanner entrada){
+ System.out.println();
+ System.out.print("Digite la cedula del cliente que desea modificar: ");
+ int Cedula = entrada.nextInt();
+
+ for (int i=0; i< cantidadClientes; i++){
+    //Verificar si existe 
+    if (clientes[i].getcedula()==Cedula){
+        System.out.print("Digite la nueva cedula: ");
+        int nuevoCedula= entrada.nextInt();
+    
+        System.out.print("Digite el nuevo nombre: ");
+        String nuevoNombre = entrada.next();
+    
+        System.out.print("Digite el nuevo apellido: ");
+        String nuevoApellido= entrada.next();
+    
+        System.out.print("Digite su nuevo email: ");
+        String nuevoEmail= entrada.next();
+    
+        System.out.println("Digite su nuevo numero celular: ");
+        int nuevoCelular= entrada.nextInt();
+    
+        System.out.println("Digite su nuevo pais de residencia");
+        String nuevoPais = entrada.next();
+
+         clientes[i].setcedula(nuevoCedula);
+         clientes[i].setnombre(nuevoNombre);
+         clientes[i].setapellido(nuevoApellido);
+         clientes[i].setemail(nuevoEmail);
+         clientes[i].settelefono(nuevoCelular);
+         clientes[i].setpais(nuevoPais);
+         System.out.println("¡Modificado con exito!");
+         return;
+
+
+    }
+ }
+}
+
+    public static void eliminarClientes(Cliente[] clientes, int cantidadClientes, Scanner entrada){
+ 
+    System.out.println("Digite la cedula a eliminar: ");
+    int nuevaCedula = entrada.nextInt();
+
+        for(int i = 0; i < cantidadClientes; i++){
+            if(clientes[i].getcedula() == nuevaCedula){
+                for(int j = i; j < cantidadClientes - 1; j++){
+                    clientes[j] = clientes[j + 1];
+                }
+                cantidadClientes --;
+                System.out.println("Empleado eliminado!");
+                return;
+            }
+        }  
+        
+        
+
+}
     
 }
 
