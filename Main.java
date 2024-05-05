@@ -55,6 +55,15 @@ class Cliente{
 
 }
 
+class Reserva{
+    private String habitacion;
+    private String buffets;
+    private String cumpleaños;
+
+
+
+}
+
 
 class Empleado {
     private int cedula;
@@ -110,8 +119,10 @@ public class Main {
         Scanner entrada = new Scanner(System.in);
         Empleado[] empleados = new Empleado[1000];
         Cliente[]clientes= new Cliente[5000];
-        int cantidadClientes= 0; 
+        Reserva[]reservas = new Reserva[20];
+        int cantidadClientes = 0; 
         int cantidadEmpleados = 0;
+        int cantidadReservas = 0;
         int opcion;
 
         
@@ -120,9 +131,8 @@ public class Main {
             System.out.println("Menú");
             System.out.println("1. Gestionar empleados");
             System.out.println("2. Gestionar clientes");
-            System.out.println("3. Gestionar servicios");
-            System.out.println("4. Reservas");
-            System.out.println("5. Salir");
+            System.out.println("3. Gestionar Reserva");
+            System.out.println("4. Salir");
             System.out.println("Digite una opcion");
             opcion = entrada.nextInt();
             
@@ -139,12 +149,10 @@ public class Main {
                     break;
 
                 case 3:
+                     gestionarReserva(reservas, cantidadReservas, entrada);
                     break;
 
                 case 4:
-                    break;
-
-                case 5:
                     break;
 
                 default:
@@ -438,6 +446,76 @@ for (int i=0; i < cantidadClientes; i++){
         
 
 }
+
+
+private static void gestionarReserva(Reserva[] reservas, int cantidadReservas, Scanner entrada) {
+do {
+    System.out.println("1. Añadir reserva");
+    System.out.println("1. Listar reserva");
+    System.out.println("3. modificar reserva");
+    System.out.println("4. Eliminar reserva");
+    System.out.println("5. Salir");
+    System.out.println(" Digite una opcion");
+    int opcionGestion = entrada.nextInt();
+    System.out.println("");
+
+    switch (opcionGestion) {
+        case 1:
+        if (cantidadReservas < reservas.length) {
+            guardarReserva(reservas, cantidadReservas, entrada);
+            cantidadReservas++;
+        } else {
+
+        }
+            
+            break;
     
+        default:
+            break;
+    }
+
+} while (true);
+
 }
 
+public static void guardarReserva(Reserva[] reservas, int cantidadReservas, Scanner entrada){
+    System.out.println();
+
+    do {
+        System.out.println("    SERVICIOS A RESERVAR  ");
+        System.out.println();
+        System.out.println("1. Reserva de habitaciones");
+        System.out.println("2. Reserva de Buffets");
+        System.out.println("3. Reserva de Cumpleaños");
+        System.out.println();
+        System.out.println("Seleccione una opcion");
+        int opcionReserva = entrada.nextInt();
+
+        switch (opcionReserva) {
+            case 1:
+            do {
+                System.out.println("     HABITACIONES      ");
+                System.out.println();
+                System.out.println("1. Habitacion personal");
+                System.out.println("2. Habitacion matrimonial");
+                System.out.println("3. Habitacion familiar");
+                System.out.println();
+                System.out.println("Seleccione una opcion");
+                int opcionHabitacion = entrada.nextInt();
+                
+            } while (true);
+                
+            default:
+                break;
+        }
+        
+    } while (true);
+
+
+
+
+
+}
+
+    
+}
