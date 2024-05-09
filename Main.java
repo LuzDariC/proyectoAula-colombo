@@ -141,27 +141,48 @@ public class Main {
         int cantidadClientes = 0;
         int cantidadEmpleados = 0;
         int cantidadReservas = 0;
-        int opcion;
+     
 
         do {
-            System.out.println("Menú");
+            System.out.println("---------------------------------");
+            System.out.println("               MENÚ              ");
+            System.out.println("---------------------------------");
             System.out.println("1. Gestionar empleados");
             System.out.println("2. Gestionar clientes");
             System.out.println("3. Gestionar Reserva");
             System.out.println("4. Salir");
-            System.out.println("Digite una opcion");
-            opcion = entrada.nextInt();
+            
+            int opcion = 0;
+            while (true) {
+                System.out.print("Digite una opción: ");
+                if (entrada.hasNextInt()) {
+                    opcion = entrada.nextInt();
+                    if (opcion >= 1 && opcion <= 4) {
+                        break;
+                    } else {
+                        System.out.println("Por favor, ingrese una opción válida (1-4).");
+                    }
+                } else {
+                    System.out.println("Por favor, ingrese un número entero.");
+                    entrada.nextLine();
+
+                }
+            }
+            
 
             switch (opcion) {
                 case 1:
+                    limpiarPantalla();
                     gestionarEmpleados(empleados, cantidadEmpleados, entrada);
                     break;
 
                 case 2:
+                    limpiarPantalla();
                     gestionarClientes(clientes, cantidadClientes, entrada);
                     break;
 
                 case 3:
+                    limpiarPantalla();
                     gestionarReserva(reservas, clientes, cantidadReservas, cantidadClientes, entrada);
 
                     break;
@@ -198,6 +219,9 @@ public class Main {
 
     public static void gestionarEmpleados(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
         do {
+            System.out.println("----------------------------------");
+            System.out.println("|       GESTIONAR EMPLEADOS       |");
+            System.out.println("----------------------------------");
             System.out.println("1. Añadir empleados");
             System.out.println("2. Listar empleados");
             System.out.println("3. Modificar empleados");
@@ -209,25 +233,42 @@ public class Main {
 
             switch (opcionGestion) {
                 case 1:
+                    limpiarPantalla();
                     if (cantidadEmpleados < empleados.length) {
+                        System.out.println("---------------------------------");
+                        System.out.println("        GUARGAR EMPLEADOS        ");
+                        System.out.println("---------------------------------");
                         guardarEmpleados(empleados, cantidadEmpleados, entrada);
                         cantidadEmpleados++;
                     } else {
                     }
                     break;
                 case 2:
-                    listarEmpleados(empleados, cantidadEmpleados);
+                    limpiarPantalla();
+                    System.out.println("---------------------------------");
+                    System.out.println("        LISTAR EMPLEADOS         ");
+                    System.out.println("---------------------------------");
+                  listarEmpleados(empleados, cantidadEmpleados);
                     break;
                 case 3:
+                    limpiarPantalla();
+                    System.out.println("---------------------------------");
+                    System.out.println("        MODIFICAR EMPLEADOS      ");
+                    System.out.println("---------------------------------");
                     modificarEmpleado(empleados, cantidadEmpleados, entrada);
                     break;
                 case 4:
+                    limpiarPantalla();
+                    System.out.println("---------------------------------");
+                    System.out.println("        ELIMINAR EMPLEADOS        ");
+                    System.out.println("---------------------------------");
                     eliminarEmpleado(empleados, cantidadEmpleados, entrada);
                     break;
                 case 5:
-
-                    break;
+                limpiarPantalla();
+                    return;
                 default:
+                System.out.println("Opción invalida");
                     break;
             }
 
@@ -235,34 +276,75 @@ public class Main {
     }
 
     public static void guardarEmpleados(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
-        System.out.println("");
-        System.out.print("Digite su cedula: ");
-        int cedula = entrada.nextInt();
+     
+    //CEDULA
+     int cedula;
+    do{
+     System.out.print("Digite su cedula: ");
+        
+    while (!entrada.hasNextInt()) {
+    System.out.println("Digite la cedula nuevamente");
+    entrada.nextInt();
+     } 
+      cedula = entrada.nextInt();
+
+    while ((String.valueOf(cedula).length()!=8) && (String.valueOf(cedula).length()!=10) ){
+    System.out.println("Debe ser de 8 - 10 digitos");
+    cedula=entrada.nextInt();
+    }    
+     
+     }   while(!entrada.hasNextInt());
+    //NAME
 
         System.out.print("Digite su nombre: ");
+        entrada.next();
+
+        while (!entrada.hasNext("[a-z-A-Z]+")) {
+            System.out.print("Digite nuevamente su nombre: ");
+            entrada.next();        
+        }
         String nombre = entrada.next();
 
-        System.out.print("Digite su correo: ");
-        String correo = entrada.next();
 
+    //EMAIL
+    String email;
+    System.out.print("Digite su email: ");
+    entrada.next();
+ 
+do {
+         email = entrada.next();
+        if (!email.contains("@")) {
+        System.out.print("Digite el correo nuevamente: ");       
+    }  
+} while (!email.contains("@"));
+
+    // CARGO
         System.out.print("Digite su cargo: ");
+        entrada.next();
+        
+        while (!entrada.hasNext("[a-z-A-Z]+")) {
+            System.out.println("Digite nuevamente su cargo: ");
+            entrada.next();        
+        }
         String cargo = entrada.next();
 
-        empleados[cantidadEmpleados] = new Empleado(cedula, nombre, correo, cargo);
+
+        empleados[cantidadEmpleados] = new Empleado(cedula, nombre, email, cargo);
         System.out.println(" Guardado con exito!");
-        System.out.println("");
+        System.out.println();
     }
 
     public static void listarEmpleados(Empleado[] empleados, int cantidadEmpleados) {
-        System.out.println("");
-        System.out.println("======Lista de empleados======");
+        limpiarPantalla();
+        System.out.println();
+        System.out.println("      Lista de empleados       ");
+        System.out.println("-------------------------------");
         if (cantidadEmpleados <= 0) {
 
             System.out.println("No hay empleados");
             System.out.println();
 
         }
-
         for (int i = 0; i < cantidadEmpleados; i++) {
             if (empleados[i] != null) {
                 System.out.println("Nombre: " + empleados[i].getnombre());
@@ -307,7 +389,6 @@ public class Main {
         }
 
     }
-
     public static void eliminarEmpleado(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
         System.out.print("Digite la cedula a eliminar: ");
         int nuevaCedula = entrada.nextInt();
@@ -340,16 +421,20 @@ public class Main {
 
             switch (opcionGestion) {
                 case 1:
+                    limpiarPantalla();
                     guardarClientes(clientes, cantidadClientes, entrada);
 
                     break;
                 case 2:
+                    limpiarPantalla();
                     listarClientes(clientes, cantidadClientes);
                     break;
                 case 3:
+                    limpiarPantalla();
                     modificarClientes(clientes, cantidadClientes, entrada);
                     break;
                 case 4:
+                    limpiarPantalla();
                     eliminarClientes(clientes, cantidadClientes, entrada);
                     break;
                 case 5:
@@ -541,8 +626,8 @@ public class Main {
                 case 3:
                     salon(entrada);
                     break;
-                case 4: 
-                return;
+                case 4:
+                    return;
 
             }
 
@@ -550,43 +635,56 @@ public class Main {
 
     }
 
-   
+    public static void habitaciones(Reserva[] reservas, int cantidadReservas, Cliente[] clientes, int cantidadClientes,
+            int opcionReserva, Scanner entrada) {
+        
 
-    public static void habitaciones(Reserva[] reservas, int cantidadReservas, Cliente[]clientes, int cantidadClientes,int opcionReserva, Scanner entrada ){
-        do {
-            System.out.println("     HABITACIONES      ");
-            System.out.println();
-            System.out.println("1. Habitacion personal");
-            System.out.println("2. Habitacion matrimonial");
-            System.out.println("3. Habitacion familiar");
-            System.out.println("4. Salir");
-            System.out.println();
-            System.out.println("Seleccione una opcion");
-            int opcionHabitacion = entrada.nextInt();
-            
-            reservas[cantidadReservas] = new Reserva(opcionReserva);
-            System.out.println("Reserva añadida con exito!");
-            System.out.println();
+                String[] opciones = {"Habitacion personal", "Habitacion matrimonial", "Habitacion familiar"};
 
-
-            switch (opcionHabitacion) {
-                case 1:
-                  return;
-                  
                 
-
-                case 2:
-                    break;
-
+        do {
+            System.out.println("Menú:");
+            for (int i = 0; i < opciones.length; i++) {
+                System.out.println((i + 1) + ". " + opciones[i]);
             }
+            System.out.println((opciones.length + 1) + ". Salir");
 
-        } while (true);
+            System.out.print("Elige una opción: ");
+            opcionReserva = entrada.nextInt();
+System.out.println();
+            if (opcionReserva >= 1 && opcionReserva <= opciones.length) {
+                System.out.println("          FACTURA           ");
+                System.out.println("_____________________________");
+                System.out.println();
+                System.out.println("Servicio reservado: " + opciones[opcionReserva - 1]);
+                System.out.println();
+            } else if (opcionReserva == opciones.length + 1) {
+                System.out.println("Saliendo del programa...");
+            } else {
+                System.out.println("Opción inválida. Inténtalo de nuevo.");
+            }break;
+
+        } while (opcionReserva != opciones.length + 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     public static void buffets(Scanner entrada) {
         do {
-            System.out.println("     SALON DE EVENTOS      ");
-            System.out.println();
+            System.out.println("       SALON DE EVENTOS     ");
+            System.out.println("____________________________");
             System.out.println("1. Buffet servicio a la mesa");
             System.out.println("2. Buffet autoservicio");
             System.out.println("3. Salir");
@@ -595,8 +693,7 @@ public class Main {
 
             switch (opcionSalon) {
                 case 1:
-                    System.out.println("---------FACTURA--------");
-                    System.out.println("Cliente:");
+                 
                     break;
 
                 default:
@@ -624,6 +721,7 @@ public class Main {
         } while (true);
 
     }
+
     public static void listarReserva(Reserva[] reservas, int cantidadReservas){
         System.out.println();
         System.out.println("LISTA RESERVA");
@@ -635,7 +733,7 @@ public class Main {
         }
         for(int i = 0; i < cantidadReservas; i++){
             if (reservas[i] != null) {
-                System.out.println("reserva: " + reservas[i]());
+                System.out.println();
                 
             }
 
