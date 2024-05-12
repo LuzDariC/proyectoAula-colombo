@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Tutoria",
+            "request": "launch",
+            "mainClass": "Tutoria",
+            "projectName": "Proyecto_965ebd18"
+        },
+        {
+            "type": "java",
+            "name": "nuevo",
+            "request": "launch",
+            "mainClass": "nuevo",
+            "projectName": "Proyecto_965ebd18"
+        },
+        {
+            "type": "java",
             "name": "Menu",
             "request": "launch",
             "mainClass": "Menu",
