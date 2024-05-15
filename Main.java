@@ -5,15 +5,12 @@ class Cliente {
     private String nombre;
     private String apellido;
     private String email;
-   
 
     public Cliente(int cedula, String nombre, String apellido, String email) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-       
-
     }
 
     public int getcedula() {
@@ -48,25 +45,55 @@ class Cliente {
         this.email = email;
     }
 
-  
-
-    
-
 }
 
 class Reserva {
+    private String fecha;
+    private int duracion;
     private String habitacion;
     private String buffets;
     private String salon;
 
-    public Reserva(String habitacion, String buffets, String salon) {
+    public Reserva(String habitacion, String buffets, String salon, int duracion, String fecha) {
         this.habitacion = habitacion;
         this.buffets = buffets;
         this.salon = salon;
+        this.duracion = duracion;
+        this.fecha = fecha;
     }
 
-    public Reserva(int opcionHabitacion) {
+    public String gethabitacion(){
+        return habitacion;
     }
+    public void sethabitacion(){
+        this.habitacion = habitacion;
+    }
+    public String getbuffets(){
+        return buffets;
+    }
+    public void setbuffets(){
+        this.buffets=buffets;
+    }
+    public String getsalon(){
+        return salon;
+    }
+    public void setsalon(){
+        this.salon = salon;
+    }
+    public int getduracion(){
+        return duracion;
+    }
+    public void setduracion(){
+        this.duracion = duracion;
+    }
+    public String getfecha(){
+        return fecha;
+    }
+    public void setfecha(){
+        this.fecha=fecha;
+    }
+
+
 }
 
 class Empleado {
@@ -168,7 +195,6 @@ public class Main {
                 case 3:
                     limpiarPantalla();
                     gestionarReserva(reservas, clientes, cantidadReservas, cantidadClientes, entrada);
-
                     break;
 
                 case 4:
@@ -317,17 +343,14 @@ public class Main {
         if (cantidadEmpleados <= 0) {
             System.out.println("No hay empleados");
             System.out.println();
-            }else  
-        System.out.println("                              Lista de empleados                                     ");
+        } else
+            System.out.println("                              Lista de empleados                                     ");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Nombre          Cedula                  Cargo                   Email                ");
         System.out.println("-------------------------------------------------------------------------------------");
         for (int i = 0; i < cantidadEmpleados; i++) {
             if (empleados[i] != null) {
-                System.out.println(empleados[i].getnombre()+"\t\t"+empleados[i].getcedula()+"\t\t"+empleados[i].getcargo()+"\t\t"+empleados[i].getemail());
-               
-
-
+                System.out.println(empleados[i].getnombre() + "\t\t" + empleados[i].getcedula() + "\t\t"  + empleados[i].getcargo() + "\t\t" + empleados[i].getemail());
             }
         }
         System.out.println();
@@ -336,46 +359,45 @@ public class Main {
     }
 
     // MODIFICAR EMPLEADOS
-        public static void modificarEmpleado(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
+    public static void modificarEmpleado(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
         int Cedula;
-        
+
         do {
             System.out.print("Digite la cedula a modificar : ");
             while (!entrada.hasNextInt()) {
                 System.out.print("Digite la cedula nuevamente, de manera correcta: ");
-                 entrada.nextInt();          
+                entrada.nextInt();
             }
             Cedula = entrada.nextInt();
         } while ((String.valueOf(Cedula).length() != 8) && (String.valueOf(Cedula).length() != 10));
 
-
-            for (int i = 0; i < cantidadEmpleados; i++) {
+        for (int i = 0; i < cantidadEmpleados; i++) {
             // Verificar si existe
             if (empleados[i].getcedula() == Cedula) {
 
-             // CEDULA
-             int nuevaCedula;
-             System.out.print("Digite su nueva cedula: ");
-             do {
-     
-                 while (!entrada.hasNextInt()) {
-                     System.out.println("Digite la cedula nuevamente, de manera correcta");
-                     entrada.next();
-                 }
-                 nuevaCedula = entrada.nextInt();
-             } while ((String.valueOf(nuevaCedula).length() != 8) && (String.valueOf(nuevaCedula).length() != 10));
+                // CEDULA
+                int nuevaCedula;
+                System.out.print("Digite su nueva cedula: ");
+                do {
 
-            //NOMBRE
+                    while (!entrada.hasNextInt()) {
+                        System.out.println("Digite la cedula nuevamente, de manera correcta");
+                        entrada.next();
+                    }
+                    nuevaCedula = entrada.nextInt();
+                } while ((String.valueOf(nuevaCedula).length() != 8) && (String.valueOf(nuevaCedula).length() != 10));
 
-            System.out.print("Digite su nuevo nombre: ");
+                // NOMBRE
 
-            while (!entrada.hasNext("[a-z-A-Z]+")) {
-                System.out.println("Digite nuevamente su nombre: ");
-                entrada.next();
-            }
-            String nuevoNombre = entrada.next();
+                System.out.print("Digite su nuevo nombre: ");
 
-             // CORREO-EMAIL
+                while (!entrada.hasNext("[a-z-A-Z]+")) {
+                    System.out.println("Digite nuevamente su nombre: ");
+                    entrada.next();
+                }
+                String nuevoNombre = entrada.next();
+
+                // CORREO-EMAIL
 
                 System.out.print("Digite su nuevo correo: ");
                 String nuevoCorreo = entrada.next();
@@ -400,9 +422,7 @@ public class Main {
                 System.out.println("Modificado con exito!");
                 return;
             }
-
         }
-
     }
 
     public static void eliminarEmpleado(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
@@ -411,6 +431,7 @@ public class Main {
 
         for (int i = 0; i < cantidadEmpleados; i++) {
             if (empleados[i].getcedula() == nuevaCedula) {
+                System.out.println("Se ha encontrado al empleado: "+ empleados[i].getnombre());
                 for (int j = i; j < cantidadEmpleados - 1; j++) {
                     empleados[j] = empleados[j + 1];
                 }
@@ -455,8 +476,8 @@ public class Main {
                     if (cantidadClientes < clientes.length) {
                         guardarClientes(clientes, cantidadClientes, entrada);
                         cantidadClientes++;
-                    }
-                    System.out.println("No se pueden agregar más clientes, se alcanzo el limite.");
+                    } else  System.out.println("No se pueden agregar más clientes, se alcanzo el limite.");
+                   
 
                     break;
                 case 2:
@@ -513,7 +534,7 @@ public class Main {
         String apellido = entrada.next();
 
         // EMAIL
-       
+
         System.out.print("Digite su email: ");
         String email = entrada.next();
         while (!email.contains("@")) {
@@ -521,9 +542,8 @@ public class Main {
             entrada.next();
         }
 
-       
-
         clientes[cantidadClientes] = new Cliente(cedula, nombre, apellido, email);
+        cantidadClientes++;
         System.out.println("¡Cliente añadido con exito!");
         System.out.println();
 
@@ -543,7 +563,7 @@ public class Main {
                 System.out.println("Apellido :" + clientes[i].getapellido());
                 System.out.println("Cedula :" + clientes[i].getcedula());
                 System.out.println("Email :" + clientes[i].getemail());
-                
+
                 System.out.println();
             }
         }
@@ -551,8 +571,18 @@ public class Main {
 
     public static void modificarClientes(Cliente[] clientes, int cantidadClientes, Scanner entrada) {
         System.out.println();
-        System.out.print("Digite la cedula del cliente que desea modificar: ");
-        int Cedula = entrada.nextInt();
+    
+        int Cedula;
+        do {
+            System.out.print("Digite la cedula que desea modificar: ");
+
+            while (!entrada.hasNextInt()) {
+                System.out.println("Digite la Cedula nuevamente");
+                entrada.nextInt();
+            }
+            Cedula = entrada.nextInt();
+
+        } while ((String.valueOf(Cedula).length() != 8) && (String.valueOf(Cedula).length() != 10));
 
         for (int i = 0; i < cantidadClientes; i++) {
             // Verificar si existe
@@ -608,16 +638,26 @@ public class Main {
                 System.out.println("¡Modificado con exito!");
                 return;
             }
-
         }
     }
-
     public static void eliminarClientes(Cliente[] clientes, int cantidadClientes, Scanner entrada) {
-        System.out.println("Digite la cedula a eliminar: ");
-        int nuevaCedula = entrada.nextInt();
+        System.out.println();
+        
+        int nuevaCedula;
+        do {
+            System.out.print("Digite la cedula a eliminar: ");
+
+            while (!entrada.hasNextInt()) {
+                System.out.println("Digite la cedula nuevamente, de manera correcta: ");
+                entrada.nextInt();
+            }
+            nuevaCedula = entrada.nextInt();
+
+        } while ((String.valueOf(nuevaCedula).length() != 8) && (String.valueOf(nuevaCedula).length() != 10));
 
         for (int i = 0; i < cantidadClientes; i++) {
             if (clientes[i].getcedula() == nuevaCedula) {
+                System.out.println("Se encontró al cliente: "+ clientes[i].getnombre());
                 for (int j = i; j < cantidadClientes - 1; j++) {
                     clientes[j] = clientes[j + 1];
                 }
@@ -632,10 +672,34 @@ public class Main {
     }
 
     private static void gestionarReserva(Reserva[] reservas, Cliente[] clientes, int cantidadReservas,
-      int cantidadClientes, Scanner entrada) {
-        System.out.println("Digite su numero de cedula: ");
-        int cc = entrada.nextInt();
-        Cliente clienteReserva = null;
+            int cantidadClientes, Scanner entrada) {
+                Cliente clienteReserva = null;
+        System.out.println("Verificar que el cliente este registrado");
+        System.out.println();
+        int cc;
+        do {
+            System.out.print("Digite su numero de cedula: ");
+
+            while (!entrada.hasNextInt()) {
+                System.out.println("Digite la cedula nuevamente, de manera correcta: ");
+                entrada.nextInt();
+            }
+            cc = entrada.nextInt();
+
+        } while ((String.valueOf(cc).length() != 8) && (String.valueOf(cc).length() != 10));
+
+        for (int i = 0; i < cantidadClientes; i++) {
+            if (clientes[i].getcedula() == cc) {
+                clienteReserva = clientes[i];
+                System.out.println("El cliente "+ clientes[i].getnombre() +" se encuentra registrado!");
+                break;
+            }
+        }
+        if (clienteReserva == null) {
+            System.out.println(
+                    "El cliente con la cedula ingresada no esta registrado, registrese antes de realizar una reserva");
+            return;
+        }
 
         do {
             System.out.println("------------------------");
@@ -647,11 +711,25 @@ public class Main {
             System.out.println("3. modificar reserva");
             System.out.println("4. Eliminar reserva");
             System.out.println("5. Salir");
-            System.out.println(" Digite una opcion");
-            int opcionGestion = entrada.nextInt();
             System.out.println();
+            int opcionGestionReserva = 0;
 
-            switch (opcionGestion) {
+            while (true) {
+                System.out.print("Digite una opcion: ");
+                if (entrada.hasNextInt()) {
+                    opcionGestionReserva = entrada.nextInt();
+                    if (opcionGestionReserva >= 1 && opcionGestionReserva <= 5) {
+                        break;
+                    } else {
+                        System.out.println("Por favor, ingrese una opcion valida (1-5).");
+                    }
+                } else {
+                    System.out.println("Por favor, ingrese un numero entero.");
+                    entrada.nextLine();
+
+                }
+            }
+            switch (opcionGestionReserva) {
                 case 1:
                     if (cantidadReservas < reservas.length) {
                         guardarReserva(reservas, cantidadReservas, entrada);
@@ -681,7 +759,7 @@ public class Main {
 
     public static void guardarReserva(Reserva[] reservas, int cantidadReservas, Scanner entrada) {
         System.out.println();
-
+        limpiarPantalla();
         do {
             System.out.println("------------------------");
             System.out.println("  SERVICIOS A RESERVAR  ");
@@ -692,20 +770,34 @@ public class Main {
             System.out.println("3. Reserva de Salon de eventos");
             System.out.println("4. Salir");
             System.out.println();
-            System.out.println("Seleccione una opcion");
-            int opcionReserva = entrada.nextInt();
-
-
+            int opcionReserva = 0;
+            while (true) {
+                System.out.print("Digite una opcion: ");
+                if (entrada.hasNextInt()) {
+                    opcionReserva = entrada.nextInt();
+                    if (opcionReserva >= 1 && opcionReserva <= 4) {
+                        break;
+                    } else {
+                        System.out.println("Por favor, ingrese una opcion valida (1-4).");
+                    }
+                } else {
+                    System.out.println("Por favor, ingrese un numero entero.");
+                    entrada.nextLine();
+                }
+            }
             switch (opcionReserva) {
                 case 1:
+                    limpiarPantalla();
                     habitaciones(reservas, cantidadReservas, null, cantidadReservas, opcionReserva, entrada);
                     break;
 
                 case 2:
+                    limpiarPantalla();
                     buffets(entrada);
                     break;
 
                 case 3:
+                    limpiarPantalla();
                     salon(entrada);
                     break;
                 case 4:
@@ -715,13 +807,17 @@ public class Main {
         } while (true);
 
     }
+
     public static void habitaciones(Reserva[] reservas, int cantidadReservas, Cliente[] clientes, int cantidadClientes,
             int opcionReserva, Scanner entrada) {
 
+        limpiarPantalla();
         String[] opciones = { "Habitacion personal", "Habitacion matrimonial", "Habitacion familiar" };
 
         do {
-            System.out.println("Menú:");
+            System.out.println("-----------------------");
+            System.out.println("     HABITACIONES      ");
+            System.out.println("-----------------------");
             for (int i = 0; i < opciones.length; i++) {
                 System.out.println((i + 1) + ". " + opciones[i]);
             }
@@ -730,10 +826,10 @@ public class Main {
             System.out.print("Elige una opción: ");
             opcionReserva = entrada.nextInt();
             System.out.println();
-            
+
             if (opcionReserva >= 1 && opcionReserva <= opciones.length) {
                 System.out.println("          FACTURA           ");
-                System.out.println("_____________________________");
+                System.out.println("____________________________");
                 System.out.println();
                 System.out.println("Servicio reservado: " + opciones[opcionReserva - 1]);
 
@@ -749,16 +845,31 @@ public class Main {
     }
 
     public static void buffets(Scanner entrada) {
+        limpiarPantalla();
         do {
-            System.out.println("       SALON DE EVENTOS     ");
-            System.out.println("____________________________");
+            System.out.println("-------------------------------");
+            System.out.println("             BUFFET            ");
+            System.out.println("-------------------------------");
             System.out.println("1. Buffet servicio a la mesa");
             System.out.println("2. Buffet autoservicio");
             System.out.println("3. Salir");
             System.out.println();
-            int opcionSalon = entrada.nextInt();
-
-            switch (opcionSalon) {
+            int opcionBuffet = 0;
+            while (true) {
+                System.out.print("Digite una opcion: ");
+                if (entrada.hasNextInt()) {
+                    opcionBuffet = entrada.nextInt();
+                    if (opcionBuffet >= 1 && opcionBuffet <= 3) {
+                        break;
+                    } else {
+                        System.out.println("Por favor, ingrese una opcion valida (1-3).");
+                    }
+                } else {
+                    System.out.println("Por favor, ingrese un numero entero.");
+                    entrada.nextLine();
+                }
+            }
+            switch (opcionBuffet) {
                 case 1:
 
                     break;
@@ -773,14 +884,37 @@ public class Main {
 
     public static void salon(Scanner entrada) {
         do {
-            System.out.println("     SALON DE EVENTOS      ");
-            System.out.println();
+            limpiarPantalla();
+            System.out.println("------------------------------");
+            System.out.println("       SALON DE EVENTOS       ");
+            System.out.println("------------------------------");
             System.out.println("1. Para conferencia de trabajos");
             System.out.println("2. salon de eventos sociales");
-            int opcionSalon = entrada.nextInt();
+            System.out.println("3. Salir");
+            int opcionSalon = 0;
 
+            while (true) {
+                System.out.print("Digite una opcion: ");
+                if (entrada.hasNextInt()) {
+                    opcionSalon = entrada.nextInt();
+                    if (opcionSalon >= 1 && opcionSalon <= 3) {
+                        break;
+                    } else {
+                        System.out.println("Por favor, ingrese una opcion valida (1-3).");
+                    }
+                } else {
+                    System.out.println("Por favor, ingrese un numero entero.");
+                    entrada.nextLine();
+
+                }
+            }
             switch (opcionSalon) {
                 case 1:
+                    break;
+                case 2:
+                    break;
+
+                case 3:
                     break;
             }
 
@@ -789,13 +923,16 @@ public class Main {
     }
 
     public static void listarReserva(Reserva[] reservas, int cantidadReservas) {
-        System.out.println();
-        System.out.println("LISTA RESERVA");
+        System.out.println("-------------------------------");
+        System.out.println("          LISTA RESERVA        ");
+        System.out.println("-------------------------------");
         if (cantidadReservas <= 0) {
 
             System.out.println("No hay reservas");
             System.out.println();
 
+        } else {
+            
         }
         for (int i = 0; i < cantidadReservas; i++) {
             if (reservas[i] != null) {

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Project",
+            "request": "launch",
+            "mainClass": "Project",
+            "projectName": "Proyecto_965ebd18"
+        },
+        {
+            "type": "java",
             "name": "Tutoria",
             "request": "launch",
             "mainClass": "Tutoria",
