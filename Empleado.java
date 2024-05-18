@@ -11,9 +11,7 @@ class Empleado {
             this.nombre = nombre;
             this.email = email;
             this.cargo = cargo;
-    
         }
-    
         public int getcedula() {
             return cedula;
         }
@@ -107,15 +105,13 @@ class Empleado {
                     case 5:
                         return;
                     default:
-                        System.out.println("Opción invalida");
-                        break;
+                     System.out.println("Opción invalida");
+                    break;
                 }
     
             } while (true);
         }
-    
-       
-    
+
     public static void guardarEmpleados(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
 
         // CEDULA

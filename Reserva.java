@@ -45,6 +45,5 @@
             this.fecha=fecha;
         }
     
-    
     }
 
