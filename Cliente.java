@@ -45,7 +45,7 @@ class Cliente {
         this.email = email;
     }
 
-     public static void guardarClientes(Cliente[] clientes, int cantidadClientes, Scanner entrada) {
+     public static void AñadirClientes(Cliente[] clientes, int cantidadClientes, Scanner entrada) {
         int cedula;
         do {
             System.out.print("Digite su cedula: ");

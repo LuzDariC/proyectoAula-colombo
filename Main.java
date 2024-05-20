@@ -7,18 +7,27 @@ public class Main {
         Scanner entrada = new Scanner(System.in);
         Empleado[] empleados = new Empleado[10];
         Cliente[] clientes = new Cliente[5];
-        Reserva[] reservas = new Reserva[10];
+        ReservaHabitacion [] reservasHabitaciones = new ReservaHabitacion[10];
+        String [] habitacion = new String[5];
+        
+        habitacion[0] = "Habitacion 101";
+        habitacion[1] = "Habitacion 102";
+        habitacion[2] = "Habitacion 103";
+        habitacion[3] = "Habitacion 104";
+        habitacion[4] = "Habitacion 105";
+        
         
         int cantidadClientes = 0;
         int cantidadEmpleados = 0;
-        int cantidadReservas = 0;
+        int cantidadReservasHabitaciones = 0;
+        
         do {
             System.out.println("---------------------------------");
             System.out.println("               MENU              ");
             System.out.println("---------------------------------");
             System.out.println("1. Gestionar empleados");
             System.out.println("2. Gestionar clientes");
-            System.out.println("3. Gestionar Reserva");
+            System.out.println("3. Gestionar Reserva de habitacion");
             System.out.println("4. Salir");
 
             int opcion = 0;
@@ -49,7 +58,7 @@ public class Main {
 
                 case 3:
                     limpiarPantalla();
-                    gestionarReserva(reservas, clientes, cantidadReservas, cantidadClientes, entrada);
+                    gestionarReservaDeHabitacion(reservasHabitaciones, clientes, cantidadReservasHabitaciones, cantidadClientes, entrada);
                     break;
 
                 case 4:
@@ -104,7 +113,7 @@ public class Main {
                 case 1:
                     limpiarPantalla();
                     if (cantidadClientes < clientes.length) {
-                        Cliente.guardarClientes(clientes, cantidadClientes, entrada);
+                        Cliente.AñadirClientes(clientes, cantidadClientes, entrada);
                         cantidadClientes++;
                     } else  System.out.println("No se pueden agregar más clientes, se alcanzo el limite.");
                    
@@ -131,7 +140,7 @@ public class Main {
 
         } while (true);
     }
-    private static void gestionarReserva(Reserva[] reservas, Cliente[] clientes, int cantidadReservas,
+    private static void gestionarReservaDeHabitacion (ReservaHabitacion[] reservaHabitaciones, Cliente[] clientes, int cantidadReservas,
             int cantidadClientes, Scanner entrada) {
                 Cliente clienteReserva = null;
         System.out.println("Verificar que el cliente este registrado");
@@ -162,9 +171,9 @@ public class Main {
         }
 
         do {
-            System.out.println("------------------------");
-            System.out.println("    GESTIONAR RESERVA   ");
-            System.out.println("------------------------");
+            System.out.println("--------------------------------");
+            System.out.println(" GESTIONAR RESERVA DE HABITACION ") ;
+            System.out.println("--------------------------------");
             System.out.println();
             System.out.println("1. Añadir reserva");
             System.out.println("2. Listar reserva");
@@ -172,13 +181,13 @@ public class Main {
             System.out.println("4. Eliminar reserva");
             System.out.println("5. Salir");
             System.out.println();
-            int opcionGestionReserva = 0;
+            int opcionGestionReservaHabitacion = 0;
 
             while (true) {
                 System.out.print("Digite una opcion: ");
                 if (entrada.hasNextInt()) {
-                    opcionGestionReserva = entrada.nextInt();
-                    if (opcionGestionReserva >= 1 && opcionGestionReserva <= 5) {
+                    opcionGestionReservaHabitacion = entrada.nextInt();
+                    if (opcionGestionReservaHabitacion >= 1 && opcionGestionReservaHabitacion <= 5) {
                         break;
                     } else {
                         System.out.println("Por favor, ingrese una opcion valida (1-5).");
@@ -189,16 +198,14 @@ public class Main {
 
                 }
             }
-            switch (opcionGestionReserva) {
+            switch (opcionGestionReservaHabitacion) {
                 case 1:
-                    if (cantidadReservas < reservas.length) {
-                        guardarReserva(reservas, cantidadReservas, entrada);
-                        cantidadReservas++;
-                    } else {
-
-                    }
+                  
                     break;
                 case 2:
+                
+                
+
                     break;
 
                 case 3:
@@ -215,230 +222,7 @@ public class Main {
             }
         } while (true);
 
-    }
-
-    public static void guardarReserva(Reserva[] reservas, int cantidadReservas, Scanner entrada) {
-        System.out.println();
-        limpiarPantalla();
-        do {
-            System.out.println("------------------------");
-            System.out.println("  SERVICIOS A RESERVAR  ");
-            System.out.println("------------------------");
-            System.out.println();
-            System.out.println("1. Reserva de habitaciones");
-            System.out.println("2. Reserva de Buffets");
-            System.out.println("3. Reserva de Salon de eventos");
-            System.out.println("4. Salir");
-            System.out.println();
-            int opcionReserva = 0;
-            while (true) {
-                System.out.print("Digite una opcion: ");
-                if (entrada.hasNextInt()) {
-                    opcionReserva = entrada.nextInt();
-                    if (opcionReserva >= 1 && opcionReserva <= 4) {
-                        break;
-                    } else {
-                        System.out.println("Por favor, ingrese una opcion valida (1-4).");
-                    }
-                } else {
-                    System.out.println("Por favor, ingrese un numero entero.");
-                    entrada.nextLine();
-                }
-            }
-            switch (opcionReserva) {
-                case 1:
-                    limpiarPantalla();
-                    habitaciones(reservas, cantidadReservas, null, cantidadReservas, opcionReserva, entrada);
-                    break;
-
-                case 2:
-                    limpiarPantalla();
-                    buffets(entrada);
-                    break;
-
-                case 3:
-                    limpiarPantalla();
-                    salon(entrada);
-                    break;
-                case 4:
-                    return;
-            }
-
-        } while (true);
-
-    }
-
-    public static void habitaciones(Reserva[] reservas, int cantidadReservas, Cliente[] clientes, int cantidadClientes,
-            int opcionReserva, Scanner entrada) {
-
-                do {
-             System.out.println("-------------------------------");
-             System.out.println("         HABITACIONES          ");
-             System.out.println("-------------------------------");
-             System.out.println("1. Habitacion personal");
-             System.out.println("2. Habitacion Matrimonial");
-             System.out.println("3. Salir");
-             System.out.println();
-            int opcionHabitacion=0;
-            
-    while (true) {
-        System.out.println("Digite una opcion");
-        if (entrada.hasNext()) {
-            opcionHabitacion=entrada.nextInt();
-            if (opcionHabitacion>=1 && opcionHabitacion<=3) {
-                break;
-                
-            }else{
-                System.out.println("Por favor, ingrese una opcion valida (1-3)");
-            }
-            
-        }else{
-            System.out.println("Por favor, ingrese un numero entero");
-            entrada.nextLine();
-        }
         
     }
-    switch (opcionHabitacion) {
-        case 1:
-if (opcionHabitacion==1) {
-    int variableopcion=1;
-   
     
-    reservas[cantidadReservas] = new Reserva (null, null, null, variableopcion, null);
-    cantidadReservas++;
-    System.out.println("Reserva realizada con exito");
-
-}
-
-
-
-
-            
-            break;
-    
-        default:
-            break;
     }
-                    
-                    
-
-
-
-                } while (true);
-
-
-
-
-
-
-
-
-
-
-
-            
-}
-
-    public static void buffets(Scanner entrada) {
-        limpiarPantalla();
-        do {
-            System.out.println("-------------------------------");
-            System.out.println("             BUFFET            ");
-            System.out.println("-------------------------------");
-            System.out.println("1. Buffet servicio a la mesa");
-            System.out.println("2. Buffet autoservicio");
-            System.out.println("3. Salir");
-            System.out.println();
-            int opcionBuffet = 0;
-            while (true) {
-                System.out.print("Digite una opcion: ");
-                if (entrada.hasNextInt()) {
-                    opcionBuffet = entrada.nextInt();
-                    if (opcionBuffet >= 1 && opcionBuffet <= 3) {
-                        break;
-                    } else {
-                        System.out.println("Por favor, ingrese una opcion valida (1-3).");
-                    }
-                } else {
-                    System.out.println("Por favor, ingrese un numero entero.");
-                    entrada.nextLine();
-                }
-            }
-            switch (opcionBuffet) {
-                case 1:
-
-                    break;
-
-                default:
-                    break;
-            }
-
-        } while (true);
-
-    }
-
-    public static void salon(Scanner entrada) {
-        do {
-            limpiarPantalla();
-            System.out.println("------------------------------");
-            System.out.println("       SALON DE EVENTOS       ");
-            System.out.println("------------------------------");
-            System.out.println("1. Para conferencia de trabajos");
-            System.out.println("2. salon de eventos sociales");
-            System.out.println("3. Salir");
-            int opcionSalon = 0;
-
-            while (true) {
-                System.out.print("Digite una opcion: ");
-                if (entrada.hasNextInt()) {
-                    opcionSalon = entrada.nextInt();
-                    if (opcionSalon >= 1 && opcionSalon <= 3) {
-                        break;
-                    } else {
-                        System.out.println("Por favor, ingrese una opcion valida (1-3).");
-                    }
-                } else {
-                    System.out.println("Por favor, ingrese un numero entero.");
-                    entrada.nextLine();
-
-                }
-            }
-            switch (opcionSalon) {
-                case 1:
-
-                   
-
-                    break;
-                case 2:
-                    break;
-
-                case 3:
-                    break;
-            }
-
-        } while (true);
-
-
-
-    }
-
-    public static void listarReserva(Reserva[] reservas, int cantidadReservas) {
-        System.out.println("-------------------------------");
-        System.out.println("          LISTA RESERVA        ");
-        System.out.println("-------------------------------");
-        if (cantidadReservas <= 0) {
-
-            System.out.println("No hay reservas");
-            System.out.println();
-
-        } else {
-            
-        }
-        for (int i = 0; i < cantidadReservas; i++) {
-            if (reservas[i] != null) {
-                System.out.println();
-
-            }
-        }
-    }
-}

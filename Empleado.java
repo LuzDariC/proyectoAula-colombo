@@ -46,7 +46,7 @@ class Empleado {
 
         
 
-        public static void gestionarEmpleados(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
+        public static int gestionarEmpleados(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
             do {
                 System.out.println(" ----------------------------------");
                 System.out.println("|        GESTIONAR EMPLEADOS       |");
@@ -79,7 +79,7 @@ class Empleado {
                             System.out.println("---------------------------------");
                             System.out.println("        GUARGAR EMPLEADOS        ");
                             System.out.println("---------------------------------");
-                            guardarEmpleados(empleados, cantidadEmpleados, entrada);
+                            AñadirEmpleados(empleados, cantidadEmpleados, entrada);
                             cantidadEmpleados++;
                         } else {
                         }
@@ -103,7 +103,7 @@ class Empleado {
                         eliminarEmpleado(empleados, cantidadEmpleados, entrada);
                         break;
                     case 5:
-                        return;
+                        return opcionGestion;
                     default:
                      System.out.println("Opción invalida");
                     break;
@@ -112,11 +112,12 @@ class Empleado {
             } while (true);
         }
 
-    public static void guardarEmpleados(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
+    public static void AñadirEmpleados(Empleado[] empleados, int cantidadEmpleados, Scanner entrada) {
 
         // CEDULA
         int cedula;
         System.out.print("Digite su cedula: ");
+        entrada.nextLine();
         do {
 
             while (!entrada.hasNextInt()) {
